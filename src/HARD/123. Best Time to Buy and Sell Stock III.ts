@@ -43,5 +43,13 @@ Constraints:
  */
 
 function maxProfit(prices: number[]): number {
-
+  if (!prices.length) return 0;
+  let dp0 = 0, dp1 = -prices[0], dp2 = 0, dp3 = -prices[0], dp4 = 0;
+  for (let i = 1; i < prices.length; i++) {
+    dp1 = Math.max(dp1, dp0 - prices[i]);
+    dp2 = Math.max(dp2, dp1 + prices[i]);
+    dp3 = Math.max(dp3, dp2 - prices[i]);
+    dp4 = Math.max(dp4, dp3 + prices[i]);
+  }
+  return Math.max(0, dp1, dp2, dp3, dp4);
 };
