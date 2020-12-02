@@ -27,13 +27,13 @@ export class PriorityQueue<T> {
     [this._queue[1], this._queue[this._length]] = [this._queue[this._length], this._queue[1]];
     const res = this._queue.pop();
     this._length--;
-    let currentIndex = 1, shrinkIndex = currentIndex * 2;
-    while (shrinkIndex <= this._length) {
-      if (shrinkIndex < this._length && this._compare(this._queue[shrinkIndex + 1], this._queue[shrinkIndex])) shrinkIndex++;
-      if (this._compare(this._queue[currentIndex], this._queue[shrinkIndex])) break;
-      [this._queue[currentIndex], this._queue[shrinkIndex]] = [this._queue[shrinkIndex], this._queue[currentIndex]];
-      currentIndex = shrinkIndex;
-      shrinkIndex *= 2;
+    let currentIndex = 1, sinkIndex = currentIndex * 2;
+    while (sinkIndex <= this._length) {
+      if (sinkIndex < this._length && this._compare(this._queue[sinkIndex + 1], this._queue[sinkIndex])) sinkIndex++;
+      if (this._compare(this._queue[currentIndex], this._queue[sinkIndex])) break;
+      [this._queue[currentIndex], this._queue[sinkIndex]] = [this._queue[sinkIndex], this._queue[currentIndex]];
+      currentIndex = sinkIndex;
+      sinkIndex *= 2;
     }
     return res;
   }
