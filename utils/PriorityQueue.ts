@@ -42,4 +42,12 @@ export class PriorityQueue<T> {
     if (!this._length) return undefined
     return this._queue[1];
   }
+  
+  public size(): number {
+    return this._length;
+  }
+  
+  public empty(): boolean {
+    return !!this._length;
+  }
 }
