@@ -18,3 +18,17 @@ export class ListNode {
     this.next = (next===undefined ? null : next)
   }
 }
+
+export type Pair<T, S> = {
+  first: T,
+  second: S,
+}
+
+export interface Graph<T> {
+  adjList: GraphNode<T>[][] | number[][];
+}
+
+interface GraphNode<T> {
+  index: number,
+  data: T
+}
