@@ -31,27 +31,48 @@
  
  */
 
+// function wiggleMaxLength(nums: number[]): number {
+//   if (!nums.length) return 0;
+//   if (nums.length < 2) return 1;
+//   let ans: number = 0;
+//   let flag: boolean = false;
+//   let startIndex = 0;
+//   while (startIndex + 1 < nums.length && nums[startIndex] === nums[startIndex + 1]) startIndex++;
+//   if (startIndex + 1 === nums.length) return 1;
+//   if (nums[startIndex] > nums[startIndex + 1]) flag = true;
+//   else if (nums[startIndex] < nums[startIndex + 1]) flag = false;
+//   ans = 2;
+//   for (let i = 2; i < nums.length; i++) {
+//     const currentFlag: boolean = !flag;
+//     if (currentFlag && nums[i - 1] > nums[i]) {
+//       ans++;
+//       flag = currentFlag;
+//     }
+//     if (!currentFlag && nums[i - 1] < nums[i]) {
+//       ans++;
+//       flag = currentFlag;
+//     }
+//   }
+//   return ans;
+// };
+
 function wiggleMaxLength(nums: number[]): number {
-  if (!nums.length) return 0;
-  if (nums.length < 2) return 1;
-  let ans: number = 0;
-  let flag: boolean = false;
-  let startIndex = 0;
-  while (startIndex + 1 < nums.length && nums[startIndex] === nums[startIndex + 1]) startIndex++;
-  if (startIndex + 1 === nums.length) return 1;
-  if (nums[startIndex] > nums[startIndex + 1]) flag = true;
-  else if (nums[startIndex] < nums[startIndex + 1]) flag = false;
-  ans = 2;
-  for (let i = 2; i < nums.length; i++) {
-    const currentFlag: boolean = !flag;
-    if (currentFlag && nums[i - 1] > nums[i]) {
-      ans++;
-      flag = currentFlag;
-    }
-    if (!currentFlag && nums[i - 1] < nums[i]) {
-      ans++;
-      flag = currentFlag;
+  if (nums.length < 2) return nums.length;
+  const up: number[] = new Array(nums.length).fill(0);
+  const down: number[] = new Array(nums.length).fill(0);
+  up[0] = 1;
+  down[0] = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > nums[i - 1]) {
+      up[i] = Math.max(up[i - 1], down[i - 1] + 1);
+      down[i] = down[i - 1]
+    } else if (nums[i] < nums[i - 1]) {
+      up[i] = up[i - 1];
+      down[i] = Math.max(down[i - 1], up[i - 1] + 1);
+    } else {
+      up[i] = up[i - 1];
+      down[i] = down[i - 1];
     }
   }
-  return ans;
+  return Math.max(up[nums.length - 1], down[nums.length - 1]);
 };
