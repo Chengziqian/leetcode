@@ -25,7 +25,7 @@ export type Pair<T, S> = {
 }
 
 export interface Graph<T> {
-  adjList: GraphNode<T>[][] | number[][];
+  adjList: GraphNode<T>[][];
 }
 
 interface GraphNode<T> {
