@@ -48,6 +48,6 @@ export class PriorityQueue<T> {
   }
   
   public empty(): boolean {
-    return !!this._length;
+    return !this._length;
   }
 }
