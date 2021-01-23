@@ -13,9 +13,8 @@ export class PriorityQueue<T> {
     let currentIndex = this._queue.length - 1;
     let swimIndex = currentIndex >> 1;
     while (swimIndex >= 1) {
-      if (this._compare(this._queue[currentIndex], this._queue[swimIndex])) {
-        [this._queue[currentIndex], this._queue[swimIndex]] = [this._queue[swimIndex], this._queue[currentIndex]]
-      }
+      if (this._compare( this._queue[swimIndex], this._queue[currentIndex])) break;
+      [this._queue[currentIndex], this._queue[swimIndex]] = [this._queue[swimIndex], this._queue[currentIndex]]
       currentIndex = swimIndex;
       swimIndex >>= 1;
     }
