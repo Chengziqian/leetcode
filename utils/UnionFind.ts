@@ -21,5 +21,11 @@ export class UnionFind {
     this.parent[pa] = pb;
     this.cc--;
     this.rank[pb] += this.rank[pa];
+
+  }
+  
+  public getSize(x: number) {
+    const root = this.find(x);
+    return this.rank[root];
   }
 }
