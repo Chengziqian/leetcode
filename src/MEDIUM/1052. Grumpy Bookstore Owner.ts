@@ -35,5 +35,22 @@ Note:
  */
 
 function maxSatisfied(customers: number[], grumpy: number[], X: number): number {
-
+  let current = 0;
+  for (let i = 0; i < Math.min(X, customers.length); i++) {
+    current += customers[i];
+  }
+  for (let i = X; i < customers.length; i++) {
+    current += grumpy[i] ? 0 : customers[i];
+  }
+  if (X >= customers.length) return current;
+  let ans = current;
+  let left = 0, right = X;
+  while (right < customers.length) {
+    if (grumpy[left]) current -= customers[left];
+    left++;
+    if (grumpy[right]) current += customers[right];
+    right++;
+    ans = Math.max(current, ans);
+  }
+  return ans;
 };
