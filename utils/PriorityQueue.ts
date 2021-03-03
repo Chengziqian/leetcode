@@ -12,7 +12,7 @@ export class PriorityQueue<T> {
   
   public remove(): T | undefined {
     const front = this._heap.front();
-    this._heap.delete(1);
+    this._heap.delete();
     return front;
   }
   

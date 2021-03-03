@@ -35,7 +35,7 @@ export class Heap<T> {
     this.swim(this._size);
   }
 
-  public delete(index: number) {
+  public delete(index: number = 1) {
     if (!this._size || index === -1) return;
     let lastEle = this.heap[this._size];
     if (this.cmp(lastEle, this.heap[index])) {
@@ -51,13 +51,9 @@ export class Heap<T> {
     }
   }
   
-  public indexOf(e: T, equal?: (a: T, b: T) => boolean) {
+  public indexOf(equal: (e: T) => boolean) {
     for (let i = 1; i <= this._size; i++) {
-      if (!equal) {
-        if (e === this.heap[i]) return i;
-      } else {
-        if (equal(e, this.heap[i])) return i;
-      }
+      if (equal(this.heap[i])) return i;
     }
     return -1;
   }

@@ -54,9 +54,9 @@ function medianSlidingWindow(nums: number[], k: number): number[] {
   while (right < nums.length - 1) {
     const deleteVal = nums[left++];
     if (deleteVal < HeapAsc.front()) {
-      HeapDesc.delete(HeapDesc.indexOf(deleteVal));
+      HeapDesc.delete(HeapDesc.indexOf(v => v === deleteVal));
     } else {
-      HeapAsc.delete(HeapAsc.indexOf(deleteVal));
+      HeapAsc.delete(HeapAsc.indexOf(v => v === deleteVal));
     }
     const insertVal = nums[++right];
     if (insertVal >= HeapAsc.front()) {

@@ -66,7 +66,7 @@ function getSkyline(buildings: number[][]): number[][] {
   for (let i = 0; i < heights.length; i++) {
     const [x, h] = heights[i];
     if (h < 0) heap.insert(-h);
-    else heap.delete(heap.indexOf(h));
+    else heap.delete(heap.indexOf(_h => h === _h));
     const currentMax = heap.front();
     if (pre !== currentMax) {
       ans.push([x, currentMax]);
