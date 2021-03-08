@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+// 02/06/2021 MEDIUM
+
+/*
+
+*/
+=======
 // 02/06/2021 MEDIUM LABEL: slide window
 
 // https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards/
@@ -62,3 +69,4 @@ function maxScore(cardPoints: number[], k: number): number {
   }
   return sum[sum.length - 1] - min;
 };
+>>>>>>> b49d57e87467f2c1b1ecc9d22dc9790fc0b60a73

@@ -42,3 +42,40 @@ Note:
 1 <= positions[i][1] <= 10^6.
 
  */
+
+ import { SegmentTree } from './../../utils/index'
+function fallingSquares(positions: number[][]): number[] {
+  const record: Map<number, number> = new Map<number, number>();
+  const point: number[] = []
+  for (let i = 0; i < positions.length; i++) {
+    const [index, sizeLen] = positions[i];
+    point.push(index, index + sizeLen - 1);
+  }
+  point.sort((a, b) => a - b);
+  let count = 0;
+  record.set(point[0], count++);
+  for (let i = 1; i < point.length; i++) {
+    if (point[i] !== point[i - 1]) {
+      record.set(point[i], count++);
+    }
+  }
+  const ST: SegmentTree<number> = new SegmentTree<number>(
+    count,
+    0,
+    (a, b) => Math.max(a, b),
+    (oldValue, newValue, size) => newValue
+  );
+  const ans: number[] = new Array(positions.length);
+  let height = 0;
+  for (let i = 0; i < positions.length; i++) {
+    const [index, sizeLen] = positions[i];
+    const currentHeight = ST.query(getIndex(index), getIndex(index + sizeLen - 1));
+    ST.update(getIndex(index), getIndex(index + sizeLen - 1), currentHeight + sizeLen);
+    height = Math.max(height, currentHeight + sizeLen);
+    ans[i] = height;
+  }
+  return ans;
+  function getIndex(index: number) {
+    return record.get(index)
+  }
+};
