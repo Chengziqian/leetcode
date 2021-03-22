@@ -33,48 +33,50 @@ queries[i].length == 2
 
 */
 
-interface TrieNode {
-  children: TrieNode[]
-}
-function maximizeXor(nums: number[], queries: number[][]): number[] {
-  const root: TrieNode = { children: new Array(2) };
-  nums.sort((a, b) => a - b);
-  const qid: number[] = new Array(queries.length);
-  for (let i = 0; i < qid.length; i++) qid[i] = i;
-  qid.sort((a, b) => queries[a][1] - queries[b][1]);
-
-  const ans: number[] = new Array(queries.length);
-  let index = 0;
-  for (let i = 0; i < qid.length; i++) {
-    const [ x, limit ] = queries[qid[i]];
-    while (index < nums.length && nums[index] <= limit) insert(nums[index++]);
-    if (index === 0) ans[qid[i]] = -1;
-    else ans[qid[i]] = query(x) ^ x;
+namespace MaximizeXor {
+  interface TrieNode {
+    children: TrieNode[]
   }
-  return ans;
+  function maximizeXor(nums: number[], queries: number[][]): number[] {
+    const root: TrieNode = { children: new Array(2) };
+    nums.sort((a, b) => a - b);
+    const qid: number[] = new Array(queries.length);
+    for (let i = 0; i < qid.length; i++) qid[i] = i;
+    qid.sort((a, b) => queries[a][1] - queries[b][1]);
 
-  function insert(n: number) {
-    let p = root;
-    for (let i = 30; i >= 0; i--) {
-      const next = (n & (1 << i)) ? 1 : 0;
-      if (!p.children[next]) p.children[next] = { children: new Array(2) };
-      p = p.children[next];
+    const ans: number[] = new Array(queries.length);
+    let index = 0;
+    for (let i = 0; i < qid.length; i++) {
+      const [ x, limit ] = queries[qid[i]];
+      while (index < nums.length && nums[index] <= limit) insert(nums[index++]);
+      if (index === 0) ans[qid[i]] = -1;
+      else ans[qid[i]] = query(x) ^ x;
     }
-  }
+    return ans;
 
-  function query(x: number) {
-    let res = 0;
-    let p = root;
-    for (let i = 30; i >= 0; i--) {
-      const need = (x & (1 << i)) ? 0 : 1;
-      if (p.children[need]) {
-        p = p.children[need];
-        res |= (need << i);
-      } else {
-        p = p.children[+!need];
-        res |= (+!need << i);
+    function insert(n: number) {
+      let p = root;
+      for (let i = 30; i >= 0; i--) {
+        const next = (n & (1 << i)) ? 1 : 0;
+        if (!p.children[next]) p.children[next] = { children: new Array(2) };
+        p = p.children[next];
       }
     }
-    return res;
-  }
-};
+
+    function query(x: number) {
+      let res = 0;
+      let p = root;
+      for (let i = 30; i >= 0; i--) {
+        const need = (x & (1 << i)) ? 0 : 1;
+        if (p.children[need]) {
+          p = p.children[need];
+          res |= (need << i);
+        } else {
+          p = p.children[+!need];
+          res |= (+!need << i);
+        }
+      }
+      return res;
+    }
+  };
+}
