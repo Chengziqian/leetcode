@@ -35,7 +35,9 @@ export class Heap<T> {
     this.swim(this._size);
   }
 
-  public delete(index: number = 1) {
+  public delete(arg?: T | ((e: T) => boolean)) {
+    const _equal = (typeof arg === 'function' ? arg : ((it: T) => it === arg)) as (e: T) => boolean;
+    const index = arg ? this.indexOf(_equal) : 1;
     if (!this._size || index === -1) return;
     let lastEle = this.heap[this._size];
     if (this.cmp(lastEle, this.heap[index])) {
