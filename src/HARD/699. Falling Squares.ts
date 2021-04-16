@@ -43,7 +43,7 @@ Note:
 
  */
 
- import { SegmentTree } from './../../utils/index'
+import { SegmentTree } from './../../utils/index'
 function fallingSquares(positions: number[][]): number[] {
   const record: Map<number, number> = new Map<number, number>();
   const point: number[] = []
