@@ -44,37 +44,61 @@ s1.length == s2.length
 s1 and s2 consist of lower-case English letters.
 
  */
+// function isScramble(s1: string, s2: string): boolean {
+//   if (s1.length !== s2.length) return false;
+//   const n = s1.length;
+//   const dp: boolean[][][] = new Array(n);
+//   for (let i = 0; i < dp.length; i++) {
+//     dp[i] = new Array(n);
+//     for (let j = 0; j < dp[i].length; j++) {
+//       dp[i][j] = new Array(n + 1).fill(false);
+//     }
+//   }
+//   for (let i = 0; i < s1.length; i++) {
+//     for (let j = 0; j < s2.length; j++) {
+//       dp[i][j][1] = s1[i] === s2[j];
+//     }
+//   }
+//  
+//   for (let k = 2; k <= n; k++) {
+//     for (let i = 0; i <= n - k; i++) {
+//       for (let j = 0; j <= n - k; j++) {
+//         for (let w = 1; w <= k - 1; w++) {
+//           if (dp[i][j][w] && dp[i + w][j + w][k - w]) {
+//             dp[i][j][k] = true;
+//             break;
+//           }
+//           if (dp[i][j + k - w][w] && dp[i + w][j][k - w]) {
+//             dp[i][j][k] = true;
+//             break;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   return dp[0][0][n];
+// };
+
+
 function isScramble(s1: string, s2: string): boolean {
   if (s1.length !== s2.length) return false;
   const n = s1.length;
-  const dp: boolean[][][] = new Array(n);
-  for (let i = 0; i < dp.length; i++) {
-    dp[i] = new Array(n);
-    for (let j = 0; j < dp[i].length; j++) {
-      dp[i][j] = new Array(n + 1).fill(false);
+  const memo: boolean[][][] = new Array(n);
+  for (let i = 0; i < memo.length; i++) {
+    memo[i] = new Array(n);
+    for (let j = 0; j < memo[i].length; j++) {
+      memo[i][j] = new Array(n + 1);
     }
   }
-  for (let i = 0; i < s1.length; i++) {
-    for (let j = 0; j < s2.length; j++) {
-      dp[i][j][1] = s1[i] === s2[j];
-    }
-  }
+  return dfs(0, 0, n);
   
-  for (let k = 2; k <= n; k++) {
-    for (let i = 0; i <= n - k; i++) {
-      for (let j = 0; j <= n - k; j++) {
-        for (let w = 1; w <= k - 1; w++) {
-          if (dp[i][j][w] && dp[i + w][j + w][k - w]) {
-            dp[i][j][k] = true;
-            break;
-          }
-          if (dp[i][j + k - w][w] && dp[i + w][j][k - w]) {
-            dp[i][j][k] = true;
-            break;
-          }
-        }
-      }
+  function dfs(i: number, j: number, len: number): boolean {
+    if (memo[i][j][len] !== undefined) return memo[i][j][len];
+    if (len === 1 && s1[i] === s2[j]) return memo[i][j][len] = true;
+    for (let l = 1; l <= len - 1; l++) {
+      if (dfs(i, j, l) && dfs(i + l, j + l, len - l)) return memo[i][j][len] = true;
+      if (dfs(i, j + len - l, l) && dfs(i + l, j, len - l)) return memo[i][j][len] = true;
     }
+    return memo[i][j][len] = false;
   }
-  return dp[0][0][n];
 };

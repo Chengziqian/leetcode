@@ -26,20 +26,44 @@ Would allow duplicates affect the run-time complexity? How and why?
 
  */
 
+// function findMin(nums: number[]): number {
+//   let left = 0;
+//   let right = nums.length - 1;
+//   if (nums[left] < nums[right]) return nums[left]
+//   while (left < right) {
+//     const mid = Math.floor((left + right) / 2);
+//     if (left > 0 && nums[left] < nums[left - 1]) return nums[left];
+//     if (nums[left] < nums[mid]) {
+//       left = mid + 1;
+//     } else if (nums[left] > nums[mid]) {
+//       right = mid;
+//     } else {
+//       left++;
+//     }
+//   }
+//   return nums[left];
+// };
+
+// function findMin(nums: number[]): number {
+//   let left = 0;
+//   let right = nums.length - 1;
+//   while (left <= right) {
+//     const mid = (left + right) >> 1;
+//     if (nums[mid] === nums[right]) right--;
+//     else if (nums[mid] > nums[right]) left = mid + 1;
+//     else right = mid;
+//   }
+//   return nums[left];
+// };
+
 function findMin(nums: number[]): number {
   let left = 0;
   let right = nums.length - 1;
-  if (nums[left] < nums[right]) return nums[left]
   while (left < right) {
-    const mid = Math.floor((left + right) / 2);
-    if (left > 0 && nums[left] < nums[left - 1]) return nums[left];
-    if (nums[left] < nums[mid]) {
-      left = mid + 1;
-    } else if (nums[left] > nums[mid]) {
-      right = mid;
-    } else {
-      left++;
-    }
+    const mid = (left + right) >> 1;
+    if (nums[mid] === nums[right]) right--;
+    else if (nums[mid] > nums[right]) left = mid + 1;
+    else right = mid;
   }
   return nums[left];
 };
