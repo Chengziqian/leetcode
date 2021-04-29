@@ -40,12 +40,23 @@ nums is sorted and rotated between 1 and n times.
 
  */
 
+// function findMin(nums: number[]): number {
+//   let left = 0, right = nums.length - 1;
+//   while (left < right) {
+//     const mid = (left + right) >> 1;
+//     if (nums[mid] > nums[right]) left = mid + 1;
+//     else right = mid
+//   }
+//   return nums[left];
+// };
+
 function findMin(nums: number[]): number {
-  let left = 0, right = nums.length - 1;
-  while (left < right) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
     const mid = (left + right) >> 1;
-    if (nums[mid] > nums[right]) left = mid + 1;
-    else right = mid
+    if (nums[mid] >= nums[0]) left = mid + 1;
+    else right = mid - 1;
   }
-  return nums[left];
+  return left === nums.length ? nums[0] : nums[left];
 };

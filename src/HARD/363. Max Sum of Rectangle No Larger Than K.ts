@@ -35,6 +35,36 @@ Follow up: What if the number of rows is much larger than the number of columns?
  */
 import { BST } from '../../utils/BST';
 
+// function maxSumSubmatrix(matrix: number[][], k: number): number {
+//   const row = matrix.length;
+//   const col = matrix[0].length;
+//   const sum: number[][] = new Array(row + 1);
+//   for (let i = 0; i < sum.length; i++) {
+//     sum[i] = new Array(col + 1).fill(0)
+//   }
+//   for (let i = 0; i < row; i++) {
+//     for (let j = 0; j < col; j++) {
+//       sum[i + 1][j + 1] = sum[i][j + 1] + sum[i + 1][j] - sum[i][j] + matrix[i][j];
+//     }
+//   }
+//   let ans = Number.MIN_SAFE_INTEGER;
+//   for (let rowStart = 0; rowStart < row; rowStart++) {
+//     for (let rowEnd = rowStart; rowEnd < row; rowEnd++) {
+//       const bst = new BST<number>((a, b) => a - b);
+//       bst.insert(0);
+//       for (let j = 0; j < col; j++) {
+//         const area = sum[rowEnd + 1][j + 1] - sum[rowStart][j + 1] - sum[rowEnd + 1][0] + sum[rowStart][0];
+//         const find = bst.lowerBound(area - k);
+//         if (find !== undefined) {
+//           ans = Math.max(area - find, ans);
+//         }                    　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 
+//         bst.insert(area);
+//       }
+//     }
+//   }
+//   return ans;
+// };
+
 function maxSumSubmatrix(matrix: number[][], k: number): number {
   const row = matrix.length;
   const col = matrix[0].length;
@@ -50,17 +80,26 @@ function maxSumSubmatrix(matrix: number[][], k: number): number {
   let ans = Number.MIN_SAFE_INTEGER;
   for (let rowStart = 0; rowStart < row; rowStart++) {
     for (let rowEnd = rowStart; rowEnd < row; rowEnd++) {
-      const bst = new BST<number>((a, b) => a - b);
-      bst.insert(0);
+      const list: number[] = [0];
       for (let j = 0; j < col; j++) {
         const area = sum[rowEnd + 1][j + 1] - sum[rowStart][j + 1] - sum[rowEnd + 1][0] + sum[rowStart][0];
-        const find = bst.lowerBound(area - k);
-        if (find !== undefined) {
-          ans = Math.max(area - find, ans);
+        const find = lowerBound(list, area - k);
+        if (find < list.length) {
+          ans = Math.max(area - list[find], ans);
         }
-        bst.insert(area);
+        list.splice(lowerBound(list, area), 0, area)
       }
     }
   }
   return ans;
+  
+  function lowerBound(nums: number[], target: number): number {
+    let left = 0, right = nums.length - 1;
+    while (left <= right) {
+      const mid = left + right >> 1;
+      if (nums[mid] >= target) right = mid - 1;
+      else left = mid + 1;
+    }
+    return left;
+  }
 };

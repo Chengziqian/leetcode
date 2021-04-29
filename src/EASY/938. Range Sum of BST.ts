@@ -37,22 +37,32 @@
  * }
  */
 import { TreeNode } from '../../types/index';
+// function rangeSumBST(root: TreeNode | null, L: number, R: number): number {
+//   if (!root) return 0;
+//   const stack: TreeNode[] = [];
+//   let p: TreeNode | null = root;
+//   let ans = 0;
+//   while (p || stack.length) {
+//     if (p) {
+//       stack.push(p);
+//       p = p.left;
+//     } else {
+//       const currentTreeNode = stack.pop() as TreeNode;
+//       if (currentTreeNode.val >= L && currentTreeNode.val <= R) {
+//         ans += currentTreeNode.val;
+//       }
+//       p = currentTreeNode.right;
+//     }
+//   }
+//   return ans;
+// };
+
 function rangeSumBST(root: TreeNode | null, L: number, R: number): number {
-  if (!root) return 0;
-  const stack: TreeNode[] = [];
-  let p: TreeNode | null = root;
-  let ans = 0;
-  while (p || stack.length) {
-    if (p) {
-      stack.push(p);
-      p = p.left;
-    } else {
-      const currentTreeNode = stack.pop() as TreeNode;
-      if (currentTreeNode.val >= L && currentTreeNode.val <= R) {
-        ans += currentTreeNode.val;
-      }
-      p = currentTreeNode.right;
-    }
+  return sum(root);
+  function sum(root: TreeNode | null): number {
+    if (!root) return 0;
+    if (root.val < L) return sum(root.right);
+    else if (root.val > R) return sum(root.left);
+    else return root.val + sum(root.right) + sum(root.left);
   }
-  return ans;
 };
