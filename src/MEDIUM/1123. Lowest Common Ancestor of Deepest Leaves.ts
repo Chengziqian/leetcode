@@ -81,16 +81,33 @@ import { TreeNode } from '../../types/index';
 //   return ans;
 // };
 
+// function lcaDeepestLeaves(root: TreeNode | null): TreeNode | null {
+//   if (!root) return null;
+//   const leftHeight = depth(root.left);
+//   const rightHeight = depth(root.right);
+//   if (leftHeight === rightHeight) return root;
+//   return leftHeight < rightHeight ? lcaDeepestLeaves(root.right) : lcaDeepestLeaves(root.left);
+//  
+//   function depth(root: TreeNode | null): number {
+//     if (!root) return 0;
+//     else return Math.max(depth(root.left), depth(root.right)) + 1;
+//   }
+// };
+
 function lcaDeepestLeaves(root: TreeNode | null): TreeNode | null {
-  if (!root) return null;
-  const leftHeight = depth(root.left);
-  const rightHeight = depth(root.right);
-  if (leftHeight === rightHeight) return root;
-  return leftHeight < rightHeight ? lcaDeepestLeaves(root.right) : lcaDeepestLeaves(root.left);
-  
-  function depth(root: TreeNode | null): number {
-    if (!root) return 0;
-    else return Math.max(depth(root.left), depth(root.right)) + 1;
+  let ans: TreeNode = null;
+  let max: number = 0;
+  dfs(root, 0);
+  return ans;
+  function dfs(root: TreeNode, depth: number): number {
+    if (!root) return depth;
+    const left = dfs(root.left, depth + 1);
+    const right = dfs(root.right, depth + 1);
+    if (left === right && left >= max) {
+      max = left;
+      ans = root;
+    }
+    return Math.max(left, right);
   }
 };
 
