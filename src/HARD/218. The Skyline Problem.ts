@@ -75,3 +75,43 @@ function getSkyline(buildings: number[][]): number[][] {
   }
   return ans;
 };
+
+import { SegmentTree } from '../../utils/SegmentTree';
+
+function _getSkyline(buildings: number[][]): number[][] {
+  const record: Map<number, number> = new Map<number, number>();
+  const used: Set<number> = new Set<number>();
+  const index: number[] = [];
+  for (let i = 0; i < buildings.length; i++) {
+    const [l, r] = buildings[i];
+    if (!used.has(l)) index.push(l);
+    if (!used.has(r)) index.push(r);
+    used.add(l);
+    used.add(r);
+  }
+  index.sort((a, b) => a - b);
+  for (let i = 0; i < index.length; i++) {
+    record.set(index[i], i);
+  }
+  const segTree: SegmentTree<number> = new SegmentTree<number>(
+    index.length,
+    0,
+    (a, b) => Math.max(a, b),
+    (oldValue, newValue) => newValue
+  )
+  buildings.sort((a, b) => a[2] - b[2])
+  for (let i = 0; i < buildings.length; i++) {
+    const [l, r, h] = buildings[i];
+    const ll = record.get(l);
+    const rr = record.get(r);
+    segTree.update(ll, rr - 1, h);
+  }
+  const ans: number[][] = [];
+  for (let i = 0; i < index.length; i++) {
+    const maxHeight = segTree.query(i, i);
+    if (!ans.length || ans[ans.length - 1][1] !== maxHeight) {
+      ans.push([index[i], maxHeight]);
+    }
+  }
+  return ans;
+};
