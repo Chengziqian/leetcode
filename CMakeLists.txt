@@ -16,3 +16,4 @@ add_executable(Offer67-ConvertStringToInteger src/LCOF/MEDIUM/Offer67-ConvertStr
 add_executable(1787-MaketheXORofAllSegmentsEqualtoZero src/HARD/1787-MaketheXORofAllSegmentsEqualtoZero.cpp)
 add_executable(CTCI-03-06-AnimalShelter src/CTCI/EASY/CTCI-03-06-AnimalShelter.cpp)
 add_executable(CTCI-04-12-PathsWithSum src/CTCI/MEDIUM/CTCI-04-12-PathsWithSum.cpp)
+add_executable(disscuss3 src/Unkown/disscuss3.cpp)
