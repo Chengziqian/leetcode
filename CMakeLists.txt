@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(leetcode)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Offer19-RegularExpressionMatching src/LCOF/HARD/Offer19-RegularExpressionMatching.cpp)
 add_executable(Offer39-Mode src/LCOF/HARD/Offer39-Mode.cpp)
@@ -17,3 +17,10 @@ add_executable(1787-MaketheXORofAllSegmentsEqualtoZero src/HARD/1787-MaketheXORo
 add_executable(CTCI-03-06-AnimalShelter src/CTCI/EASY/CTCI-03-06-AnimalShelter.cpp)
 add_executable(CTCI-04-12-PathsWithSum src/CTCI/MEDIUM/CTCI-04-12-PathsWithSum.cpp)
 add_executable(disscuss3 src/Unkown/disscuss3.cpp)
+add_executable(CTCI-08-14-BooleanEvaluation src/CTCI/MEDIUM/CTCI-08-14-BooleanEvaluation.cpp)
+add_executable(CTCI-08-07-PermutationI src/CTCI/MEDIUM/CTCI-08-07-PermutationI.cpp)
+add_executable(1744-CanYouEatYourFavoriteCandyOnYourFavoriteDay src/MEDIUM/1744-CanYouEatYourFavoriteCandyOnYourFavoriteDay.cpp)
+add_executable(CTCI-16-02-WordsFrequency src/CTCI/MEDIUM/CTCI-16-02-WordsFrequency.cpp)
+add_executable(CTCI-16-03-Intersection src/CTCI/HARD/CTCI-16-03-Intersection.cpp)
+add_executable(CTCI-16-08-EnglishInt src/CTCI/HARD/CTCI-16-08-EnglishInt.cpp)
+add_executable(CTCI-16-10-LivingPeople src/CTCI/MEDIUM/CTCI-16-10-LivingPeople.cpp)
