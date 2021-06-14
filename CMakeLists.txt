@@ -28,11 +28,3 @@ add_executable(CTCI-16-10-LivingPeople src/CTCI/MEDIUM/CTCI-16-10-LivingPeople.c
 add_executable(CTCI-16-13-BisectSquares src/CTCI/MEDIUM/CTCI-16-13-BisectSquares.cpp)
 add_executable(CTCI-16-18-PatternMatching src/CTCI/MEDIUM/CTCI-16-18-PatternMatching.cpp)
 add_executable(CTCI-16-22-LangtonsAnt src/CTCI/MEDIUM/CTCI-16-22-LangtonsAnt.cpp)
-add_executable(CTCI-17-07-BabyNames src/CTCI/MEDIUM/CTCI-17-07-BabyNames.cpp)
-add_executable(test2 src/Unkown/test2.cpp)
-add_executable(test3 src/Unkown/test3.cpp)
-add_executable(discuss2-3 src/Unkown/discuss2-3.cpp)
-add_executable(test2-1 src/Unkown/test2-1.cpp)
-add_executable(188-BestTimeToBuyAndSellStockIV src/HARD/188-BestTimeToBuyAndSellStockIV.cpp)
-
-add_executable(CTCI-17-25-WordRectangle src/CTCI/HARD/CTCI-17-25-WordRectangle.cpp)
