@@ -34,3 +34,5 @@ add_executable(test3 src/Unkown/test3.cpp)
 add_executable(discuss2-3 src/Unkown/discuss2-3.cpp)
 add_executable(test2-1 src/Unkown/test2-1.cpp)
 add_executable(188-BestTimeToBuyAndSellStockIV src/HARD/188-BestTimeToBuyAndSellStockIV.cpp)
+
+add_executable(CTCI-17-25-WordRectangle src/CTCI/HARD/CTCI-17-25-WordRectangle.cpp)
