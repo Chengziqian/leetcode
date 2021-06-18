@@ -28,3 +28,7 @@ add_executable(CTCI-16-10-LivingPeople src/CTCI/MEDIUM/CTCI-16-10-LivingPeople.c
 add_executable(CTCI-16-13-BisectSquares src/CTCI/MEDIUM/CTCI-16-13-BisectSquares.cpp)
 add_executable(CTCI-16-18-PatternMatching src/CTCI/MEDIUM/CTCI-16-18-PatternMatching.cpp)
 add_executable(CTCI-16-22-LangtonsAnt src/CTCI/MEDIUM/CTCI-16-22-LangtonsAnt.cpp)
+
+add_executable(CTCI-17-26-SparseSimilarity src/CTCI/HARD/CTCI-17-26-SparseSimilarity.cpp)
+
+add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
