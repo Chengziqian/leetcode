@@ -1,35 +1,59 @@
 //
-// Created by 程子骞 on 2021/6/10.
+// Created by ZiqianCheng on 2021/6/5.
 //
 
-#include <unordered_map>
+// https://leetcode-cn.com/circle/discuss/MZrlaD/
+
 #include <vector>
-#include <iostream>
 using namespace std;
 class Solution {
 public:
-  int minSwapCount(vector<int>& arr) {
-    unordered_map<int, int> index;
-    int n = arr.size();
-    for (int i = 0; i < n; ++i) {
-      index[arr[i]] = i; // 保存下标
-    }
-    sort(arr.begin(), arr.end()); // 排序
+  int maxNumberOfBooks(vector<vector<int>>& books) {
+    if (books.empty()) return 0;
+    auto cmp = [](const vector<int>& a, const vector<int>& b) {
+      return a[0] > b[0]; // 排序，去掉第一维，保证下标小的一定在底部
+    };
+    sort(books.begin(), books.end(), cmp);
+    int n = books.size();
     int ans = 0;
-    int tail = n;
-    for (int i = 0; i + 1 < n; ++i) {
-      if (index[arr[i]] > index[arr[i + 1]]) { // 判断每个相邻的数，小的数下标大需要交换到尾部
-        index[arr[i + 1]] = tail++;
-        ans++;
+    vector<int> dp(n, 1); // dp[i]代表必须以book[i]为堆顶书的数量
+    for (int i = 0; i < n; ++i) {
+      for (int k = 0; k < i; ++k) {
+        if (books[k][0] > books[i][0] && books[k][1] > books[i][1]) { // 在前面寻找一个可以堆放在其上的书
+          dp[i] = max(dp[i], dp[k] + 1);
+        }
       }
+      ans = max(ans, dp[i]); // 对每个状态跟更新答案
     }
     return ans;
   }
 };
 
-int main() {
-  Solution s;
-  vector<int> t = {10,11,12,1,3,4,5,6,7,8,9,2};
-  cout << s.minSwapCount(t) << endl;
-  return 0;
-}
+class Solution2 {
+public:
+  int maxNumberOfBooks(vector<vector<int>>& books) {
+    if (books.empty()) return 0;
+    auto cmp = [](const vector<int>& a, const vector<int>& b) {
+      return a[0] == b[0] ? a[1] < b[1] : a[0] > b[0]; // 排序，保证下标小的一定在底部
+    };
+    sort(books.begin(), books.end(), cmp);
+    int n = books.size();
+    vector<int> dp(n, 0); // dp[i]代表book数量为i + 1个时书籍的最小值
+    int ans = 1;
+    dp[0] = books[0][1];
+    for (int i = 0; i < n; ++i) {
+      if (books[i][1] < dp[ans - 1]) {
+        dp[ans++] = books[i][1];
+      } else {
+        int left = 0, right = ans - 1;
+        while (left <= right) {
+          int mid = (left + right) / 2;
+          if (dp[mid] <= books[i][1]) right = mid - 1;
+          else left = mid + 1;
+        }
+        dp[left] = books[i][1]; // 二分查找最后一个严格大于books[i][1]的长度，books[i][1]可接在其后，更新dp
+      }
+    }
+    return ans;
+  }
+};
