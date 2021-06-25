@@ -32,3 +32,5 @@ add_executable(CTCI-16-22-LangtonsAnt src/CTCI/MEDIUM/CTCI-16-22-LangtonsAnt.cpp
 add_executable(CTCI-17-26-SparseSimilarity src/CTCI/HARD/CTCI-17-26-SparseSimilarity.cpp)
 
 add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
+add_executable(149-MaxPointsOnALine src/HARD/149-MaxPointsOnALine.cpp)
+add_executable(752-OpenTheLock src/MEDIUM/752-OpenTheLock.cpp)

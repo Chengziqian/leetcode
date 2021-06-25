@@ -50,14 +50,16 @@ public:
   }
 
   void dfs(vector<string>& arr, int index, vector<int>& count, int len) {
-    if (index == arr.size()) ans = max(ans, len);
+    if (index == arr.size()) return;
     for (int i = index; i < arr.size(); ++i) {
       vector<int> currentCount = count;
       for (auto c: arr[i]) currentCount[c - 'a']++;
       int k = 0;
       while (k < 26 && currentCount[k] <= 1) k++;
-      if (k == 26) dfs(arr, i + 1, currentCount, len + arr[i].size());
-      else dfs(arr, i + 1, currentCount, len);
+      if (k == 26) {
+        ans = max(ans, len + (int)arr[i].size());
+        dfs(arr, i + 1, currentCount, len + arr[i].size());
+      }
     }
   }
 };
