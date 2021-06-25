@@ -28,9 +28,10 @@ add_executable(CTCI-16-10-LivingPeople src/CTCI/MEDIUM/CTCI-16-10-LivingPeople.c
 add_executable(CTCI-16-13-BisectSquares src/CTCI/MEDIUM/CTCI-16-13-BisectSquares.cpp)
 add_executable(CTCI-16-18-PatternMatching src/CTCI/MEDIUM/CTCI-16-18-PatternMatching.cpp)
 add_executable(CTCI-16-22-LangtonsAnt src/CTCI/MEDIUM/CTCI-16-22-LangtonsAnt.cpp)
-
+add_executable(CTCI-17-07-BabyNames src/CTCI/MEDIUM/CTCI-17-07-BabyNames.cpp)
+add_executable(discuss2-3 src/Unkown/discuss2-3.cpp)
+add_executable(188-BestTimeToBuyAndSellStockIV src/HARD/188-BestTimeToBuyAndSellStockIV.cpp)
+add_executable(1449-FormLargestIntegerWithDigitsThatAddUpToTarget src/HARD/1449-FormLargestIntegerWithDigitsThatAddUpToTarget.cpp)
 add_executable(CTCI-17-26-SparseSimilarity src/CTCI/HARD/CTCI-17-26-SparseSimilarity.cpp)
-
-add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
 add_executable(149-MaxPointsOnALine src/HARD/149-MaxPointsOnALine.cpp)
-add_executable(752-OpenTheLock src/MEDIUM/752-OpenTheLock.cpp)
+add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
