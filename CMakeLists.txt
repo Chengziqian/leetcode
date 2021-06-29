@@ -35,3 +35,5 @@ add_executable(1449-FormLargestIntegerWithDigitsThatAddUpToTarget src/HARD/1449-
 add_executable(CTCI-17-26-SparseSimilarity src/CTCI/HARD/CTCI-17-26-SparseSimilarity.cpp)
 add_executable(149-MaxPointsOnALine src/HARD/149-MaxPointsOnALine.cpp)
 add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
+
+add_executable(1600-ThroneInheritance src/MEDIUM/1600-ThroneInheritance.cpp)
