@@ -37,3 +37,7 @@ add_executable(149-MaxPointsOnALine src/HARD/149-MaxPointsOnALine.cpp)
 add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
 
 add_executable(1600-ThroneInheritance src/MEDIUM/1600-ThroneInheritance.cpp)
+add_executable(726-NumberOfAtoms src/HARD/726-NumberOfAtoms.cpp)
+add_executable(1923-LongestCommonSubpath src/HARD/1923-LongestCommonSubpath.cpp)
+add_executable(139-WordBreak src/HOT100/MEDIUM/139-WordBreak.cpp)
+add_executable(152-MaximumProductSubarray src/HOT100/MEDIUM/152-MaximumProductSubarray.cpp)
