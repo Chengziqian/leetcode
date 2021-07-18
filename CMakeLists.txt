@@ -37,3 +37,8 @@ add_executable(149-MaxPointsOnALine src/HARD/149-MaxPointsOnALine.cpp)
 add_executable(4-MedianOfTwoSortedArrays src/HOT100/HARD/4-MedianOfTwoSortedArrays.cpp)
 
 add_executable(1600-ThroneInheritance src/MEDIUM/1600-ThroneInheritance.cpp)
+add_executable(773-SlidingPuzzle src/HARD/773-SlidingPuzzle.cpp)
+add_executable(247-4 src/CONTEST/247/247-4.cpp)
+add_executable(247-2 src/CONTEST/247/247-2.cpp)
+add_executable(247-3 src/CONTEST/247/247-3.cpp)
+add_executable(451-SortCharactersByFrequency src/MEDIUM/451-SortCharactersByFrequency.cpp)
